@@ -60,3 +60,6 @@ Client → Express Backend → SQLite.
 - [Бізнес-документ](docs/business_doc.md)
 - [Архітектурна діаграма](docs/architecture_diagram.drawio)
 - [Roadmap](docs/roadmap.md)
+### Архітектурна діаграма TaskTracker
+
+![Архітектурна діаграма](docs/architecture_diagram.png)
