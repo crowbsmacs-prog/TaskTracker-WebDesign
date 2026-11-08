@@ -51,3 +51,12 @@ GET /items — повертає список завдань із БД.
 
 Архітектура:
 Client → Express Backend → SQLite.
+
+
+## Практична робота №2
+
+Бізнес-документ і архітектура TaskTracker.
+
+- [Бізнес-документ](docs/business_doc.md)
+- [Архітектурна діаграма](docs/architecture_diagram.drawio)
+- [Roadmap](docs/roadmap.md)
