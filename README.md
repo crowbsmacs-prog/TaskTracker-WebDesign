@@ -75,3 +75,28 @@ Client → Express Backend → SQLite.
 - [Моделі JavaScript](domain/models.js)
 
 Реалізовано прототип моделей для роботи із завданнями.
+
+## Практична робота №4
+
+У цій практичній реалізовано CRUD API
+для керування завданнями.
+
+### API документація
+
+[OpenAPI специфікація](docs/api/openapi.yaml)
+
+![Swagger Editor](docs/api/swagger_screenshot.png)
+
+### Архітектурні рішення
+
+- [ADR 0001](docs/adr/0001-architecture-style.md)
+- [ADR 0002](docs/adr/0002-layered-architecture.md)
+- [ADR 0003](docs/adr/0003-api-style-and-error-model.md)
+
+### Тестування
+
+Команда для запуску тестів:
+
+`node --test test/tasks.test.js`
+
+Результат: 2 тести пройдено, 0 помилок.
