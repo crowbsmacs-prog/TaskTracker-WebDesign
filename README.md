@@ -63,3 +63,15 @@ Client → Express Backend → SQLite.
 ### Архітектурна діаграма TaskTracker
 
 ![Архітектурна діаграма](docs/architecture_diagram.png)
+
+## Практична робота №3 — Domain-Driven Design
+
+Виконано аналіз предметної області TaskTracker.
+
+- [Глосарій термінів](docs/domain/glossary.md)
+- [Опис сутностей](docs/domain/entities.md)
+- [Контекстна діаграма](docs/domain/context_map.png)
+- [Редагована діаграма](docs/domain/context_map.drawio)
+- [Моделі JavaScript](domain/models.js)
+
+Реалізовано прототип моделей для роботи із завданнями.
