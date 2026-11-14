@@ -107,7 +107,10 @@
       status.textContent = "Завантаження...";
 
       try {
-        const response = await fetch("/items");
+        const response = await fetchWithUi("/items", {
+          timeoutMs: 1000,
+          retries: 2
+        });
 
         if (!response.ok) {
           throw new Error("Помилка сервера");
@@ -131,5 +134,7 @@
       }
     });
   </script>
+  <script src="/resilience-ui.js"></script>
+  <script src="/http.js"></script>
 </body>
 </html>
