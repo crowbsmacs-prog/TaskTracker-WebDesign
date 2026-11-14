@@ -2,11 +2,12 @@
 const express = require("express");
 const Database = require("better-sqlite3");
 const path = require("node:path");
-
+const requestId = require("./middleware/request-id");
 const createTasksRouter = require("./api/tasks");
 const createTaskService = require("./service/tasks");
-
+const rateLimit = require("./middleware/rate-limit");
 const app = express();
+app.use(requestId);
 const PORT = 3000;
 
 // Підключення бази даних
@@ -55,8 +56,15 @@ app.get("/items", (req, res) => {
 });
 
 // API четвертої практичної
+
 const tasksService = createTaskService(db);
+
+// Спочатку перевіряємо кількість POST-запитів
+app.post("/tasks", rateLimit);
+
+// Лише після цього обробляємо маршрути
 app.use("/tasks", createTasksRouter(tasksService));
+
 
 // Запуск сервера
 app.listen(PORT, () => {

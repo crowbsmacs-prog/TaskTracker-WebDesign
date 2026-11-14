@@ -3,12 +3,14 @@ const express = require("express");
 
 function createTasksRouter(service) {
   const router = express.Router();
+  const idempotencyStore = new Map();
 
   function sendError(res, status, code, message, field) {
     return res.status(status).json({
       error: status === 404 ? "NotFoundError" : "ValidationError",
       code,
-      details: field ? [{ field, message }] : []
+      details: field ? [{ field, message }] : [],
+      requestId: res.req.requestId
     });
   }
 
@@ -19,7 +21,7 @@ function createTasksRouter(service) {
       } catch (error) {
         if (error.code) {
           return sendError(
-            res, 400, error.code, error.message, error.field
+            res, 400, error.code, error.message, error.field, 
           );
         }
 
@@ -27,7 +29,8 @@ function createTasksRouter(service) {
         return res.status(500).json({
           error: "InternalError",
           code: "INTERNAL_ERROR",
-          details: []
+          details: [],
+          requestId: req.requestId
         });
       }
     };
@@ -43,11 +46,47 @@ function createTasksRouter(service) {
     res.json(service.list());
   }));
 
-  // Створення завдання
-  router.post("/", handle((req, res) => {
-    const task = service.create(req.body);
-    res.status(201).json(task);
-  }));
+
+router.post("/", handle((req, res) => {
+  const key = req.get("Idempotency-Key");
+
+  if (!key) {
+    return res.status(400).json({
+      error: "ValidationError",
+      code: "IDEMPOTENCY_KEY_REQUIRED",
+      details: [],
+      requestId: req.requestId
+    });
+  }
+
+  const payload = JSON.stringify(req.body);
+  const previous = idempotencyStore.get(key);
+
+  // Запит із таким ключем уже виконувався
+  if (previous) {
+    if (previous.payload !== payload) {
+      return res.status(409).json({
+        error: "ConflictError",
+        code: "IDEMPOTENCY_KEY_CONFLICT",
+        details: [],
+        requestId: req.requestId
+      });
+    }
+
+    return res.status(201).json(previous.task);
+  }
+
+  // Новий запит
+  const task = service.create(req.body);
+
+  idempotencyStore.set(key, {
+    payload,
+    task
+  });
+
+  res.status(201).json(task);
+}));
+
 
   // Отримання за ID
   router.get("/:id", handle((req, res) => {
