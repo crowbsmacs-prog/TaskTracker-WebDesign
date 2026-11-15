@@ -134,3 +134,40 @@ node --test test/tasks.test.js
 Idempotency-Key та Rate Limit зберігають стан у пам'яті.
 Після перезапуску сервера цей стан скидається.
 Для реального застосунку потрібне постійне сховище.
+
+## Практична робота №6 — Docker
+
+Мета роботи — навчитися створювати Docker-образи
+та запускати власний вебзастосунок у контейнері.
+
+### Виконання
+
+1. Встановлено Docker Desktop та перевірено hello-world.
+2. Створено .dockerignore для виключення зайвих файлів.
+3. Створено Dockerfile для Node.js-застосунку TaskTracker.
+4. Зібрано Docker-образ та запущено контейнер.
+5. Перевірено вебінтерфейс і доступність API.
+
+### Команди запуску
+
+```powershell
+docker build -t tasktracker:lab6 .
+docker run --rm -d --name tasktracker-lab6 -p 3001:3000 tasktracker:lab6
+docker ps
+docker logs tasktracker-lab6
+curl.exe http://localhost:3001/health
+```
+
+Сайт доступний за адресою http://localhost:3001.
+
+Для зупинки контейнера:
+
+```powershell
+docker stop tasktracker-lab6
+```
+
+### Висновок
+
+Під час роботи я навчився створювати Docker-образ,
+запускати Node.js-застосунок у контейнері та перевіряти
+його роботу через браузер і термінал.
