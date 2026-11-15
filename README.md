@@ -1,3 +1,5 @@
+[![TaskTracker CI](https://github.com/crowbsmacs-prog/TaskTracker-WebDesign/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/crowbsmacs-prog/TaskTracker-WebDesign/actions/workflows/ci.yml)
+
 
 # TaskTracker
 
@@ -171,3 +173,47 @@ docker stop tasktracker-lab6
 Під час роботи я навчився створювати Docker-образ,
 запускати Node.js-застосунок у контейнері та перевіряти
 його роботу через браузер і термінал.
+
+
+## Практична робота №7 — GitHub Actions
+
+У цій роботі я налаштував автоматичну перевірку TaskTracker через GitHub Actions.
+
+### Що реалізовано
+
+- CI запускається після push та pull request.
+- Використовується Node.js 22.
+- Залежності встановлюються командою npm ci.
+- Налаштовано кешування npm.
+- Автоматично запускаються тести API.
+- Після тестів збирається Docker-образ.
+- Образ зберігається як GitHub Artifact.
+- Додано індикатор стану CI.
+
+### Локальна перевірка
+
+Встановлення залежностей:
+
+    npm ci
+
+Запуск тестів:
+
+    node --test test/tasks.test.js
+
+Запуск застосунку:
+
+    node server.js
+
+Збірка Docker-образу:
+
+    docker build -t tasktracker:lab7 .
+
+### Delivery
+
+Обрано GitHub Artifact. Після успішного виконання CI Docker-образ експортується у TAR.GZ та зберігається в артефактах запуску GitHub Actions.
+
+[Результат успішного запуску CI](https://github.com/crowbsmacs-prog/TaskTracker-WebDesign/actions/runs/43725685077)
+
+### Висновок
+
+Я навчився налаштовувати GitHub Actions для автоматичного тестування проєкту та збірки Docker-образу. Тепер основні перевірки виконуються без ручного запуску команд на комп'ютері.
