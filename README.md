@@ -217,3 +217,10 @@ docker stop tasktracker-lab6
 ### Висновок
 
 Я навчився налаштовувати GitHub Actions для автоматичного тестування проєкту та збірки Docker-образу. Тепер основні перевірки виконуються без ручного запуску команд на комп'ютері.
+## Практична робота №8 — Observability
+
+Налаштовано дашборд Grafana для перегляду метрик та логів демонстраційного API.
+
+- [Звіт](docs/practical-8/REPORT.md)
+- [JSON дашборду](docs/practical-8/my-demo-red-dashboard.json)
+- [Скриншот](docs/practical-8/dashboard-1.png)
