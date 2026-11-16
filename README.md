@@ -224,3 +224,11 @@ docker stop tasktracker-lab6
 - [Звіт](docs/practical-8/REPORT.md)
 - [JSON дашборду](docs/practical-8/my-demo-red-dashboard.json)
 - [Скриншот](docs/practical-8/dashboard-1.png)
+
+## Практична робота №9 — Kubernetes
+
+Створено теоретичну схему розгортання TaskTracker у Kubernetes.
+
+- [Звіт](docs/practical-9/REPORT.md)
+- [Схема PNG](docs/practical-9/tasktracker-kubernetes.png)
+- [Схема draw.io](docs/practical-9/tasktracker-kubernetes.drawio)
