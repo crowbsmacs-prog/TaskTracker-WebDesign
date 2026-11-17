@@ -232,3 +232,7 @@ docker stop tasktracker-lab6
 - [Звіт](docs/practical-9/REPORT.md)
 - [Схема PNG](docs/practical-9/tasktracker-kubernetes.png)
 - [Схема draw.io](docs/practical-9/tasktracker-kubernetes.drawio)
+
+## Практична робота №10 — Kubernetes
+
+[Звіт і результати](docs/practical-10/REPORT.md)
